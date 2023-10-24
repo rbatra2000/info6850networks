@@ -1,8 +1,9 @@
 courts.csv
 data.json
-integrated_deb
+integrated_db
 requirements.txt
 scrap.ipynb
 searchDocket.csv
 .conda
 lib
+amicus_briefs.csv
