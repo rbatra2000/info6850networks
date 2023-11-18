@@ -73,28 +73,6 @@
                             >
                                 <option selected>Select a Node by ID</option>
                                 
-                                    <option value="HLBlack">HLBlack</option>
-                                
-                                    <option value="SECURITIES AND EXCHANGE COMMISSION">SECURITIES AND EXCHANGE COMMISSION</option>
-                                
-                                    <option value="BOSTON AMERICAN LEAGUE BASE BALL COMPANY">BOSTON AMERICAN LEAGUE BASE BALL COMPANY</option>
-                                
-                                    <option value="WODouglas">WODouglas</option>
-                                
-                                    <option value="EWarren">EWarren</option>
-                                
-                                    <option value="TCClark">TCClark</option>
-                                
-                                    <option value="FFrankfurter">FFrankfurter</option>
-                                
-                                    <option value="HHBurton">HHBurton</option>
-                                
-                                    <option value="SFReed">SFReed</option>
-                                
-                                    <option value="SMinton">SMinton</option>
-                                
-                                    <option value="RHJackson">RHJackson</option>
-                                
                             </select>
                         </div>
                         <div class="col-2 pb-2">
@@ -317,8 +295,8 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "HLBlack", "label": "HLBlack", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SECURITIES AND EXCHANGE COMMISSION", "label": "SECURITIES AND EXCHANGE COMMISSION", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "label": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "WODouglas", "label": "WODouglas", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "EWarren", "label": "EWarren", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "TCClark", "label": "TCClark", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "FFrankfurter", "label": "FFrankfurter", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "HHBurton", "label": "HHBurton", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SFReed", "label": "SFReed", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SMinton", "label": "SMinton", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "RHJackson", "label": "RHJackson", "shape": "dot", "size": 10}]);
-                  edges = new vis.DataSet([{"agreement": 1, "arrows": "to", "caseName": "WILKO v. SWAN et al., DOING BUSINESS AS HAYDEN, STONE \u0026 CO., et al.", "from": "HLBlack", "to": "SECURITIES AND EXCHANGE COMMISSION", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "HLBlack", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "WILKO v. SWAN et al., DOING BUSINESS AS HAYDEN, STONE \u0026 CO., et al.", "from": "WODouglas", "to": "SECURITIES AND EXCHANGE COMMISSION", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "WODouglas", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "WILKO v. SWAN et al., DOING BUSINESS AS HAYDEN, STONE \u0026 CO., et al.", "from": "EWarren", "to": "SECURITIES AND EXCHANGE COMMISSION", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "EWarren", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "WILKO v. SWAN et al., DOING BUSINESS AS HAYDEN, STONE \u0026 CO., et al.", "from": "TCClark", "to": "SECURITIES AND EXCHANGE COMMISSION", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "TCClark", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}, {"agreement": 0, "arrows": "to", "caseName": "WILKO v. SWAN et al., DOING BUSINESS AS HAYDEN, STONE \u0026 CO., et al.", "from": "FFrankfurter", "to": "SECURITIES AND EXCHANGE COMMISSION", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "FFrankfurter", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "WILKO v. SWAN et al., DOING BUSINESS AS HAYDEN, STONE \u0026 CO., et al.", "from": "HHBurton", "to": "SECURITIES AND EXCHANGE COMMISSION", "width": 1}, {"agreement": 0, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "HHBurton", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "WILKO v. SWAN et al., DOING BUSINESS AS HAYDEN, STONE \u0026 CO., et al.", "from": "SFReed", "to": "SECURITIES AND EXCHANGE COMMISSION", "width": 1}, {"agreement": 0, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "SFReed", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}, {"agreement": 0, "arrows": "to", "caseName": "WILKO v. SWAN et al., DOING BUSINESS AS HAYDEN, STONE \u0026 CO., et al.", "from": "SMinton", "to": "SECURITIES AND EXCHANGE COMMISSION", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "SMinton", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}, {"agreement": 1, "arrows": "to", "caseName": "TOOLSON v. NEW YORK YANKEES, INC. et al.", "from": "RHJackson", "to": "BOSTON AMERICAN LEAGUE BASE BALL COMPANY", "width": 1}]);
+                  nodes = new vis.DataSet([]);
+                  edges = new vis.DataSet([]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
