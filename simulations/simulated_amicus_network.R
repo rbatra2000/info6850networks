@@ -61,15 +61,16 @@ ggsave(filename="no_weights.png", plot=p, device="png",
        height=4, width=4, units="in", dpi=500)
 
 ## With weights, you absolutely can't 
-amicus_orgs_weights = runif(1000, min=-1, max=2)
+amicus_orgs_weights = runif(1000, min=0, max=2)
 judge_threshold = 0.5
 judge_threshold_min = c(0)
 judge_threshold_max = c(1)
 observed_thresholds = c()
-
-index = sample(1:1000, 30)
+judge_votes = c()
 
 for (i in 1:100) {
+  
+  index = sample(1:1000, 30)
   
   amicus_orgs_case = amicus_orgs_all[index]
   amicus_orgs_case_weights = amicus_orgs_weights[index]
@@ -83,6 +84,7 @@ for (i in 1:100) {
   judge_vote = ifelse(actual_threshold >= judge_threshold, 1, 0)
   
   observed_thresholds = c(observed_thresholds, observed_threshold)
+  judge_votes = c(judge_votes, judge_vote)
   
   if (judge_vote == 0) {
     judge_threshold_min = c(judge_threshold_min, max(observed_threshold, max(judge_threshold_min)))
@@ -118,3 +120,24 @@ p
 ggsave(filename="weights.png", plot=p, device="png",
        height=4, width=4, units="in", dpi=500)
 
+plot_data2 = data.frame(observed_threshold = observed_thresholds, 
+                        vote = as.factor(ifelse(judge_votes == 1, "conservative", "liberal")), 
+                        actual_threshold = judge_threshold)
+
+plot_data2 = plot_data2 %>% 
+  arrange(desc(observed_threshold)) %>%
+  mutate(index = 1:nrow(plot_data2))
+
+p <- plot_data2 %>%
+  ggplot(aes(x=index, y=observed_threshold, color=vote)) + 
+  geom_point() + 
+  geom_line(aes(y = actual_threshold), color="black", linetype="dashed") +
+  scale_color_manual(values=c('springgreen4', 'firebrick1')) + 
+  theme_classic() + 
+  xlab("number of cases observed") + 
+  ylab("observed threshold")
+
+p
+
+ggsave(filename="showing_contradictions.png", plot=p, device="png",
+       height=4, width=4, units="in", dpi=500)
