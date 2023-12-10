@@ -2,11 +2,13 @@ library(data.table)
 library(zoo)
 library(plyr)
 library(tidyverse)
+library(ggplot2)
+library(plotly)
 library(dplyr)
 detach(package:dplyr)
 library(dplyr)
 
-## setwd("/Users/emmharv/Google Drive/My Drive/Cornell University/1 - Fall 2023/INFO 6850 | The Structure of Information Networks")
+#setwd("/Users/emmharv/Google Drive/My Drive/Cornell University/1 - Fall 2023/INFO 6850 | The Structure of Information Networks")
 
 ## Without weights, you can observe outcomes and pretty quickly arrive at an approximation of the 
 ## threshold after observing repeated decisions
@@ -38,8 +40,25 @@ while ((min(judge_threshold_max) - max(judge_threshold_min)) > 0.05) {
   
 }
 
-plot(1:length(judge_threshold_max), judge_threshold_max, type="l", ylim=c(0, 1), col="blue")
-lines(1:length(judge_threshold_min), judge_threshold_min, col="red")
+plot_data = data.frame(index = 1:length(judge_threshold_max), 
+                       lower_bound = judge_threshold_min, 
+                       upper_bound = judge_threshold_max, 
+                       threshold = judge_threshold)
+
+p <- plot_data %>%
+  ggplot(aes(x=index, y=upper_bound)) + 
+    geom_line(aes(y = lower_bound), color="#B8DE29FF") + 
+    geom_line(aes(y = upper_bound), color="#3CBB75FF") +
+  geom_line(aes(y = threshold), color="black", linetype="dashed") +
+    geom_ribbon(#data=subset(x, 2 <= x & x <= 3), 
+              aes(ymin=lower_bound,ymax=upper_bound), fill="#95D840FF", alpha=0.3) +
+  theme_classic() + 
+  xlab("number of iterations") + 
+  ylab("threshold")
+
+p
+ggsave(filename="no_weights.png", plot=p, device="png",
+       height=4, width=4, units="in", dpi=500)
 
 ## With weights, you absolutely can't 
 amicus_orgs_weights = runif(1000, min=-1, max=2)
@@ -48,9 +67,10 @@ judge_threshold_min = c(0)
 judge_threshold_max = c(1)
 observed_thresholds = c()
 
+index = sample(1:1000, 30)
+
 for (i in 1:100) {
   
-  index = sample(1:1000, 30)
   amicus_orgs_case = amicus_orgs_all[index]
   amicus_orgs_case_weights = amicus_orgs_weights[index]
   
@@ -74,5 +94,27 @@ for (i in 1:100) {
   
 }
 
-plot(1:length(judge_threshold_max), judge_threshold_max, type="l", ylim=c(0, 1), col="blue")
-lines(1:length(judge_threshold_min), judge_threshold_min, col="red")
+plot_data = data.frame(index = 1:length(judge_threshold_max), 
+                       lower_bound = judge_threshold_min, 
+                       upper_bound = judge_threshold_max, 
+                       threshold = judge_threshold)
+
+contradiction = min((plot_data %>% filter(lower_bound >= upper_bound))$index)
+
+p <- plot_data %>%
+  ggplot(aes(x=index, y=upper_bound)) + 
+  geom_line(aes(y = lower_bound), color="#B8DE29FF") + 
+  geom_line(aes(y = upper_bound), color="#3CBB75FF") +
+  geom_line(aes(y = threshold), color="black", linetype="dashed") +
+  geom_ribbon(data=subset(plot_data, index < contradiction), 
+    aes(ymin=lower_bound,ymax=upper_bound), fill="#95D840FF", alpha=0.3) +
+  geom_ribbon(data=subset(plot_data, index >= contradiction), 
+              aes(ymin=upper_bound,ymax=lower_bound), fill="red", alpha=0.3) +
+  theme_classic() + 
+  xlab("number of iterations") + 
+  ylab("threshold")
+
+p
+ggsave(filename="weights.png", plot=p, device="png",
+       height=4, width=4, units="in", dpi=500)
+
