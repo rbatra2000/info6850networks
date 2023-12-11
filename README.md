@@ -6,4 +6,6 @@ Our project frames Supreme Court decisions are outcomes of collective decision-m
 
 To run the notebook with the same installation setup that we used, you can run the following command to create a new anaconda environment called `amicus`:
 
-```conda env update -n amicus --file amicus.yml```
+```
+conda env update -n amicus --file amicus.yml
+```
